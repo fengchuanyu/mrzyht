@@ -72,7 +72,7 @@ class Doctor extends CI_Controller {
         $aid=$this->input->post('aid');
         $title=$this->input->post('article_title');
         $content=$this->input->post('article_content');
-        $did=$this->input->post('article_did');
+        $did=$this->input->post('article_id');
         $class=$this->input->post('article_class');
         $query=$this->Doctor_model->re_article($aid,$title,$content,$did,$class);
         if ($query){

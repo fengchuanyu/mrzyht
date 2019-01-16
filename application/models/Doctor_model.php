@@ -38,7 +38,7 @@ class Doctor_model extends CI_Model{
     }
     public  function add_article($name,$title,$desc,$type){
         $data = array(
-            'article_did' => $name,
+            'article_id' => $name,
             'article_title' => $title,
             'article_content' => $desc,
             'article_class' => $type
@@ -56,7 +56,7 @@ class Doctor_model extends CI_Model{
             'aid' => $aid,
             'article_title' => $title,
             'article_content' => $content,
-            'article_did' => $did,
+            'article_id' => $did,
             'article_class' => $class,
         );
         $query=$this->db->replace('article', $data);
