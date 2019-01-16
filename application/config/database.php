@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'cd-cdb-12o7gl0u.sql.tencentcdb.com',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'zyy',
+	'password' => 'wx1564dd2bb4b7f803',
+	'database' => 'hospital',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -92,5 +92,6 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => TRUE,
+	'port' => 63359
 );
