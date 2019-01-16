@@ -15,7 +15,7 @@
 		// }
 
 		public function checkname($title){
-			$query = $this->db->get_where('ill-class', array('ill_title' => $title));
+			$query = $this->db->get_where('illclass', array('ill_title' => $title));
 			return $query->row();
 		}
 
@@ -24,19 +24,19 @@
 			    'ill_title' => $title,
 			    'ill_content' => $content,
 			);
-			$query=$this->db->insert('ill-class', $data);
+			$query=$this->db->insert('illclass', $data);
 			return $query;
 		}
 
 		public function all_data(){
 			$this->db->select('*');
-			$this->db->from('ill-class');
+			$this->db->from('illclass');
 			$query=$this->db->get();
 			return $query->result();
 		}
 
 		public function delete($title){
-			return $this->db->delete('ill-class', array('ill_title' => $title));
+			return $this->db->delete('illclass', array('ill_title' => $title));
 		}
 
 		public function change($iid,$title,$content){
@@ -45,7 +45,7 @@
 			    'ill_title' => $title,
 			    'ill_content'  => $content
 			);
-			return $this->db->replace('ill-class', $data);
+			return $this->db->replace('illclass', $data);
 		}
 		public function get_alluser(){
 			$query = $this->db->get_where('users');
