@@ -107,9 +107,36 @@
 				echo "<script>alert('更改成功');</script>";
 				echo "<script>window.location.href='http://localhost:8080/illclass/illclass_details_page';</script>";
 			}
-			
 		}
+        public function allreg(){
+            $query=$this->User_model->all_reg();
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
+        public function allreg2(){
+            $query=$this->User_model->all_reg2();
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
 
 
 
-	}
+    }

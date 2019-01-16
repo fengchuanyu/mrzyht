@@ -64,7 +64,14 @@
 			);
 			return $this->db->replace('article', $data);
 		}
-
+        public function all_reg(){
+            $query = $this->db->from('registration')->join('users','users.uid=registration.r_uid')->join('doctor','doctor.did=registration.r_did')->get_where('','r_tag is NULL');
+            return $query->result();
+        }
+        public function all_reg2(){
+            $query = $this->db->from('registration')->join('users','users.uid=registration.r_uid')->join('doctor','doctor.did=registration.r_did')->get_where('','r_tag=1');
+            return $query->result();
+        }
 
 	}
 ?>
