@@ -17,28 +17,44 @@ class Doctor extends CI_Controller {
         $doctor = $this->Doctor_model->get_doctors('doctor');
         echo  json_encode($doctor);
     }
+    public function getoffice(){
+        $query=$this->Doctor_model->get_office();
+        if ($query) {
+            foreach ($query as $row){
+                $data[]=$row;
+            }
+            $result=array(
+                'code'=>"1000",
+                'message'=>'成功了',
+                'data'=>$data,
+            );
+            echo json_encode($result);
+        }
+    }
     public function adddoc()
     {
         $name=$this->input->post('name');
-        $time=$this->input->post('workyear');
+        $office=$this->input->post('office');
         $desc=$this->input->post('desc');
-        $goal=$this->input->post('goal');
-        $special=$this->input->post('goodat');
+        $place=$this->input->post('place');
+        $job=$this->input->post('job');
+        $price=$this->input->post('price');
         $image=$this->input->post('img');
-        $query=$this->Doctor_model->add_doctors($name,$time,$desc,$goal,$special,$image);
+        $query=$this->Doctor_model->add_doctors($office,$name,$job,$desc,$place,$price,$image);
         if($query){
             echo "添加成功";
         }
     }
     public function redoc()
     {
+        $office=$this->input->post('doctor_office');
         $name=$this->input->post('doctor_name');
         $time=$this->input->post('doctor_job');
         $desc=$this->input->post('doctor_message');
         $goal=$this->input->post('doctor_place');
-        $special=$this->input->post('doctor_special');
+        $price=$this->input->post('doctor_price');
         $did=$this->input->post('did');
-        $query=$this->Doctor_model->re_doctors($name,$time,$desc,$goal,$special,$did);
+        $query=$this->Doctor_model->re_doctors($office,$name,$time,$desc,$goal,$price,$did);
         if ($query){
             echo "修改成功";
         }

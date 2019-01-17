@@ -2,27 +2,34 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Doctor_model extends CI_Model{
     public function get_doctors(){
-        return $this->db->get('doctor')->result();
+        $query = $this->db->from('offices')->join('doctor','offices.oid=doctor.doctor_office')->get();
+        return $query->result();
     }
-    public function add_doctors($name,$time,$desc,$goal,$special,$image){
+    public function get_office(){
+        return $this->db->get('offices')->result();
+
+    }
+    public function add_doctors($office,$name,$job,$desc,$place,$price,$image){
         $data = array(
+            'doctor_office' =>$office,
             'doctor_name' => $name,
-            'doctor_job' => $time,
+            'doctor_job' => $job,
             'doctor_message' => $desc,
-            'doctor_place' => $goal,
-            'doctor_special' => $special,
+            'doctor_place' => $place,
+            'doctor_price' => $price,
             'doctor_image' => $image
         );
         $query=$this->db->insert('doctor', $data);
         return $query;
     }
-    public function re_doctors($name,$time,$desc,$goal,$special,$did){
+    public function re_doctors($office,$name,$time,$desc,$goal,$price,$did){
         $data = array(
+            'doctor_office' =>$office,
             'doctor_name' => $name,
             'doctor_job' => $time,
             'doctor_message' => $desc,
             'doctor_place' => $goal,
-            'doctor_special' => $special,
+            'doctor_price' => $price,
             'did' => $did
         );
         $this->db->where('did', $did);
