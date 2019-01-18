@@ -7,7 +7,13 @@ class Doctor_model extends CI_Model{
     }
     public function get_office(){
         return $this->db->get('offices')->result();
-
+    }
+    public function add_office($name){
+        $data = array(
+            'o_name' => $name
+        );
+        $query=$this->db->insert('offices', $data);
+        return $query;
     }
     public function add_doctors($office,$name,$job,$desc,$place,$price,$image){
         $data = array(
@@ -35,6 +41,10 @@ class Doctor_model extends CI_Model{
         $this->db->where('did', $did);
         $query=$this->db->update('doctor', $data);
         return $query;
+    }
+    public function del_office($oid){
+        $this->db->where('oid', $oid);
+        $this->db->delete('offices');
     }
     public function del_doctors($did){
         array(

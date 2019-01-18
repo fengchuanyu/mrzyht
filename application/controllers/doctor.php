@@ -31,6 +31,17 @@ class Doctor extends CI_Controller {
             echo json_encode($result);
         }
     }
+    public function deloffice(){
+        $oid=$this->input->post('oid');
+        $this->Doctor_model->del_office($oid);
+    }
+    public function addoffice(){
+        $name=$this->input->post('o_name');
+        $query=$this->Doctor_model->add_office($name);
+        if($query){
+            echo "添加成功";
+        }
+    }
     public function adddoc()
     {
         $name=$this->input->post('name');
