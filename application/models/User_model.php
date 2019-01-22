@@ -79,13 +79,14 @@
 		    return $query = $this->db->from('registration')->get()->result();
         }
         public function re_reg($rid,$r_tag){
-		    $data = array(
-		        'rid' => $rid,
-                'r_tag' => $r_tag
+            $data = array(
+                'rid' =>$rid,
+                'r_tag' => $r_tag,
             );
             $this->db->where('rid', $rid);
             $query=$this->db->update('registration', $data);
             return $query;
+//            return $this->db->update_batch('registration', $query);
         }
 	}
 ?>

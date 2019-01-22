@@ -143,14 +143,17 @@
         public function changereg(){
 		    $query=$this->User_model->change_reg('registration');
 		    echo json_encode($query);
+//		    var_dump($query);
         }
         public function rereg(){
 		    $rid=$this->input->post('rid');
 		    $r_tag=$this->input->post('r_tag');
-            $query=$this->User_model->re_reg($rid,$r_tag);
-            if($query){
-
-            }
+		    $querry=$this->User_model->re_reg($rid,$r_tag);
+//		    var_dump($query);
+//            $data=$this->User_model->re_reg($query);
+//            if ($data){
+//
+//            }
         }
 
 
