@@ -53,8 +53,11 @@
 		}
 
 		public function get_article(){
-			return $this->db->get('article')->result();
+			return $this->db->from('article')->join('doctor','article.article_id=doctor.did')->join('categorize','categorize.cate_id=article.article_class')->get()->result();
 		}
+		public function get_cate(){
+		    return $this->db->from('categorize')->get()->result();
+        }
 
 		public function changearticle($aid,$title,$content){
 			$data = array(
@@ -65,13 +68,24 @@
 			return $this->db->replace('article', $data);
 		}
         public function all_reg(){
-            $query = $this->db->from('registration')->join('users','users.uid=registration.r_uid')->join('doctor','doctor.did=registration.r_did')->get_where('','r_tag is NULL');
-            return $query->result();
-        }
-        public function all_reg2(){
             $query = $this->db->from('registration')->join('users','users.uid=registration.r_uid')->join('doctor','doctor.did=registration.r_did')->get_where('','r_tag=1');
             return $query->result();
         }
-
+        public function all_reg2(){
+            $query = $this->db->from('registration')->join('users','users.uid=registration.r_uid')->join('doctor','doctor.did=registration.r_did')->get_where('','r_tag=2');
+            return $query->result();
+        }
+        public function change_reg(){
+		    return $query = $this->db->from('registration')->get()->result();
+        }
+        public function re_reg($rid,$r_tag){
+		    $data = array(
+		        'rid' => $rid,
+                'r_tag' => $r_tag
+            );
+            $this->db->where('rid', $rid);
+            $query=$this->db->update('registration', $data);
+            return $query;
+        }
 	}
 ?>

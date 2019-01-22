@@ -97,6 +97,10 @@
 			$result = $this->User_model->get_article('article');
 			echo json_encode($result);
 		}
+        public function allcate(){
+            $result = $this->User_model->get_cate('categorize');
+            echo json_encode($result);
+        }
 
 		public function change_article(){
 			$iid=$this->input->post('iid');
@@ -136,7 +140,18 @@
                 echo json_encode($result);
             }
         }
+        public function changereg(){
+		    $query=$this->User_model->change_reg('registration');
+		    echo json_encode($query);
+        }
+        public function rereg(){
+		    $rid=$this->input->post('rid');
+		    $r_tag=$this->input->post('r_tag');
+            $query=$this->User_model->re_reg($rid,$r_tag);
+            if($query){
 
+            }
+        }
 
 
     }
