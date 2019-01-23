@@ -149,12 +149,46 @@
 		    $rid=$this->input->post('rid');
 		    $r_tag=$this->input->post('r_tag');
 		    $querry=$this->User_model->re_reg($rid,$r_tag);
-//		    var_dump($query);
-//            $data=$this->User_model->re_reg($query);
-//            if ($data){
-//
-//            }
-        }
+            if($querry){
 
+            }
+		    /*$date=$this->input->post();
+		    $query=$this->User_model->re_reg($date);
+		    if($query){
+
+            }*/
+//		    var_dump($date);
+        }
+        public function seuser(){
+		    $did=$this->input->post('did');
+		    $oid=$this->input->post('oid');
+            $query=$this->User_model->se_user($did,$oid);
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
+        public function addcase(){
+            $title=$this->input->post('title');
+            $oid=$this->input->post('oid');
+            $did=$this->input->post('did');
+            $uid=$this->input->post('uid');
+            $desc=$this->input->post('desc');
+            $com=$this->input->post('com');
+            $fang=$this->input->post('fang');
+            $date=$this->input->post('date');
+            $zhuyi=$this->input->post('zhuyi');
+            $query=$this->User_model->add_case($title,$oid,$did,$uid,$desc,$com,$fang,$date,$zhuyi);
+            if($query){
+                echo "添加成功";
+            }
+        }
 
     }

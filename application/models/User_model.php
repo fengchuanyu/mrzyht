@@ -86,7 +86,29 @@
             $this->db->where('rid', $rid);
             $query=$this->db->update('registration', $data);
             return $query;
-//            return $this->db->update_batch('registration', $query);
+//            return $this->db->update_batch('registration',$date);
+        }
+        public function se_user($did,$oid){
+		    $this->db->where('did=',$did);
+            $this->db->where('oid=', $oid);
+            $this->db->where('r_tag=2');
+            $date = $this->db->from('doctor')->join('offices','doctor.doctor_office=offices.oid')->join('registration','doctor.did=registration.r_did')->join('users','registration.r_uid=users.uid')->get();
+		    return $date->result();
+        }
+        public function add_case($title,$oid,$did,$uid,$desc,$com,$fang,$date,$zhuyi){
+            $data = array(
+                'c_name' =>$title,
+                'c_oid' => $oid,
+                'c_did' => $did,
+                'c_describe' => $desc,
+                'u_id' => $uid,
+                'c_diagnosis' => $com,
+                'c_solve' => $fang,
+                'c_time' =>$date,
+                'c_attention' => $zhuyi
+            );
+            $query=$this->db->insert('cases', $data);
+            return $query;
         }
 	}
 ?>

@@ -30,7 +30,7 @@ class Cased extends CI_Controller {
 			$this->load->model('Case_model');
 	        $query = $this -> Case_model -> resetcase($cid, $casename, $casetime, $casedia, $casedes, $caseadv);
 	        if ($query) {
-	            echo "$title";
+
 	        }
 		}
     }
