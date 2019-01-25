@@ -53,6 +53,7 @@
 		}
 
 		public function get_article(){
+            $this->db->where('article_class !=',5);
             $this->db->where('article_class !=',4);
 			return $this->db->from('article')->join('doctor','article.article_id=doctor.did')->join('categorize','categorize.cate_id=article.article_class')->get()->result();
 		}
