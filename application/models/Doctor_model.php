@@ -53,12 +53,13 @@ class Doctor_model extends CI_Model{
         $this->db->where('did', $did);
         $this->db->delete('doctor');
     }
-    public  function add_article($name,$title,$desc,$type){
+    public  function add_article($name,$title,$desc,$type,$time){
         $data = array(
             'article_id' => $name,
             'article_title' => $title,
             'article_content' => $desc,
-            'article_class' => $type
+            'article_class' => $type,
+            'article_time' => $time
         );
         $query=$this->db->insert('article', $data);
         return $query;

@@ -82,7 +82,8 @@ class Doctor extends CI_Controller {
         $title=$this->input->post('title');
         $desc=$this->input->post('desc');
         $type=$this->input->post('type');
-        $query=$this->Doctor_model->add_article($name,$title,$desc,$type);
+        $time=$this->input->post('time');
+        $query=$this->Doctor_model->add_article($name,$title,$desc,$type,$time);
         if($query){
             echo "添加成功";
         }
