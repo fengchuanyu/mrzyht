@@ -204,6 +204,16 @@
                 echo json_encode($result);
             }
         }
+        public function delcase(){
+		    $c_id=$this->input->post('c_id');
+		    $query=$this->User_model->del_case($c_id);
+		    if($query){
+		        echo '删除成功';
+            }
+//		    $date=$this->input->post();
+//		    var_dump($date);
+
+        }
         public function changecase(){
             $c_id=$this->input->post('c_id');
             $c_name=$this->input->post('c_name');
@@ -214,6 +224,47 @@
             $query=$this->User_model->change_case($c_id,$c_name,$c_describe,$c_diagnosis,$c_attention,$c_solve);
             if($query){
                 echo "更改成功";
+            }
+        }
+        public function secase(){
+            $did=$this->input->post('did');
+            $oid=$this->input->post('oid');
+            $query=$this->User_model->se_case($did,$oid);
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
+        public function sedis(){
+		    $d_pid=$this->input->post('d_pid');
+            $query=$this->User_model->se_dis($d_pid);
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
+        public function adddis(){
+            $d_pid=$this->input->post('d_pid');
+            $d_content=$this->input->post('add');
+            $d_time=$this->input->post('time');
+            $d_sign=$this->input->post('sign');
+            $query=$this->User_model->add_dis($d_pid,$d_content,$d_time,$d_sign);
+            if($query){
+                echo "添加成功";
             }
         }
 

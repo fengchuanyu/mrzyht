@@ -53,6 +53,7 @@
 		}
 
 		public function get_article(){
+            $this->db->where('article_class !=',4);
 			return $this->db->from('article')->join('doctor','article.article_id=doctor.did')->join('categorize','categorize.cate_id=article.article_class')->get()->result();
 		}
 		public function get_cate(){
@@ -125,5 +126,30 @@
             $this->db->where('c_id', $c_id);
             return $this->db->update('cases', $data);
         }
+        public function del_case($c_id){
+            return $this->db->delete('cases', array('c_id' => $c_id));
+        }
+        public function se_case($did,$oid){
+            $this->db->where('c_did=',$did);
+            $this->db->where('c_oid=', $oid);
+            $date = $this->db->from('cases')->join('offices','cases.c_oid=offices.oid')->join('doctor','doctor.did=cases.c_did')->join('registration','cases.c_time=registration.r_date')->get();
+            return $date->result();
+        }
+        public function se_dis($d_pid){
+		    $this->db->where('d_pid=',$d_pid);
+		    $date = $this->db->from('discuss')->get();
+		    return $date->result();
+        }
+        public function add_dis($d_pid,$d_content,$d_time,$d_sign){
+            $data = array(
+                'd_pid' =>$d_pid,
+                'd_content' => $d_content,
+                'd_time' => $d_time,
+                'd_sign' => $d_sign,
+            );
+            $query=$this->db->insert('discuss', $data);
+            return $query;
+        }
+
 	}
 ?>
