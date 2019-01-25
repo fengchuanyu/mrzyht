@@ -190,5 +190,31 @@
                 echo "添加成功";
             }
         }
+        public function getcase(){
+            $query=$this->User_model->get_case();
+            if ($query) {
+                foreach ($query as $row){
+                    $data[]=$row;
+                }
+                $result=array(
+                    'code'=>"1000",
+                    'message'=>'成功了',
+                    'data'=>$data,
+                );
+                echo json_encode($result);
+            }
+        }
+        public function changecase(){
+            $c_id=$this->input->post('c_id');
+            $c_name=$this->input->post('c_name');
+            $c_describe=$this->input->post('c_describe');
+            $c_diagnosis=$this->input->post('c_diagnosis');
+            $c_attention=$this->input->post('c_attention');
+            $c_solve=$this->input->post('c_solve');
+            $query=$this->User_model->change_case($c_id,$c_name,$c_describe,$c_diagnosis,$c_attention,$c_solve);
+            if($query){
+                echo "更改成功";
+            }
+        }
 
     }

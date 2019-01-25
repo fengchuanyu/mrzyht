@@ -110,5 +110,20 @@
             $query=$this->db->insert('cases', $data);
             return $query;
         }
+        public function get_case(){
+            return $this->db->from('cases')->join('offices','cases.c_oid=offices.oid')->join('doctor','doctor.did=cases.c_did')->join('registration','cases.c_time=registration.r_date')->get()->result();
+        }
+        public function change_case($c_id,$c_name,$c_describe,$c_diagnosis,$c_attention,$c_solve){
+            $data = array(
+                'c_id' => $c_id,
+                'c_name' => $c_name,
+                'c_describe'  => $c_describe,
+                'c_diagnosis' => $c_diagnosis,
+                'c_attention' => $c_attention,
+                'c_solve'  => $c_solve
+            );
+            $this->db->where('c_id', $c_id);
+            return $this->db->update('cases', $data);
+        }
 	}
 ?>
