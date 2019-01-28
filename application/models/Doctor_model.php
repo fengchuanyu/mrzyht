@@ -80,7 +80,21 @@ class Doctor_model extends CI_Model{
         $query=$this->db->replace('article', $data);
         return $query;
     }
-
-
+    public function se_lo($userName,$password){
+        $this->db->where('login_name',$userName);
+        $this->db->where('login_password',$password);
+        return $this->db->get('login')->result();
+    }
+    public function re_pass($userName,$password,$newpass){
+        $data = array(
+            'login_password' =>$newpass
+        );
+        $this->db->where('login_name',$userName);
+        $this->db->where('login_password',$password);
+        $this->db->update('login', $data);
+        $this->db->where('login_name',$userName);
+        $this->db->where('login_password',$newpass);
+        return $this->db->get('login')->result();
+    }
 
 }

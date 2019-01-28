@@ -107,5 +107,22 @@ class Doctor extends CI_Controller {
             echo "$title";
         }
     }
+    public function selo(){
+        $userName=$this->input->post('userName');
+        $password=$this->input->post('password');
+        $query=$this->Doctor_model->se_lo($userName,$password);
+        if($query){
+            echo 1;
+        }
+    }
+    public function repass(){
+        $userName=$this->input->post('userName');
+        $password=$this->input->post('password');
+        $newpass=$this->input->post('newpass');
+        $querry=$this->Doctor_model->re_pass($userName,$password,$newpass);
+        if($querry){
+            echo 1;
+        }
+    }
 
 }
